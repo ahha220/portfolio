@@ -6,10 +6,15 @@ await so that it finishes loading first before we set the video source object to
 as = type assertion (ts) 
 await only pauses function not page
 */
+
 'use client'
 
 import {useRef, useState} from 'react';
+import NavBar from '../components/NavBar';
 import ProjectCard from '../components/ProjectCard';
+import linkedinIcon from '../assets/linkedin.png';
+import githubIcon from '../assets/github.png';
+import mailIcon from '../assets/mail.webp';
 
 export default function Home() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -29,15 +34,20 @@ export default function Home() {
   }
   return (
     <main className="flex flex-col">
-      <section className="h-screen flex flex-col">
-        <div className="h-1/6 flex items-end justify-center pb-4">
+      <NavBar />
+      <section className="h-screen flex flex-col pt-0">
+        <div className="h-1/10 flex items-end justify-center pb-4">
           <div className="w-full max-w-3xl flex items-center justify-between">
             <div className="flex items-center gap-8">
-              <button className="text-sm uppercase tracking-widest text-white hover:text-blue-500 transition-colors">projects</button>
-              <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
-                <button className="text-sm uppercase tracking-widest text-white hover:text-blue-500 transition-colors">resume</button>
+              <a href="https://www.linkedin.com/in/amyjhuang/" target="_blank" rel="noopener noreferrer">
+                <button className="text-sm uppercase tracking-widest text-white hover:cursor-pointer transition-colors"><img src={linkedinIcon.src} alt="LinkedIn" className="w-5 h-5" /></button>
               </a>
-              <button className="text-sm uppercase tracking-widest text-white hover:text-blue-500 transition-colors">additionals.</button>
+              <a href="https://github.com/ahha220" target="_blank" rel="noopener noreferrer">
+                <button className="text-sm uppercase tracking-widest text-white hover:cursor-pointer transition-colors"><img src={githubIcon.src} alt="GitHub" className="w-5 h-5" /></button>
+              </a>
+              <a href="mailto:a287huan@uwaterloo.ca">
+                <button className="text-sm uppercase tracking-widest text-white hover:cursor-pointer transition-colors"><img src={mailIcon.src} alt="Mail" className="w-5 h-5" /></button>
+              </a>
             </div>
 
             <div className="flex items-center gap-3">
@@ -87,6 +97,11 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <footer>
+        <div className="w-full max-w-3xl mx-auto py-8 border-t bg-blue-500 border-none">
+          <p className="text-white text-center">Amy Huang</p>
+        </div>
+      </footer>
     </main>
   );
 }
