@@ -6,9 +6,15 @@ await so that it finishes loading first before we set the video source object to
 as = type assertion (ts) 
 await only pauses function not page
 */
+
 'use client'
 
 import {useRef, useState} from 'react';
+import NavBar from '../components/NavBar';
+import ProjectCard from '../components/ProjectCard';
+import linkedinIcon from '../assets/linkedin.png';
+import githubIcon from '../assets/github.png';
+import mailIcon from '../assets/mail.webp';
 
 export default function Home() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -27,45 +33,77 @@ export default function Home() {
     }
   }
   return (
-    <main className="flex flex-col h-screen">
-      <div className="h-1/6 flex items-end justify-center pb-4">
-        <div className="w-full max-w-3xl flex items-center justify-between">
-          <div className="flex items-center gap-8">
-            <button className="text-sm uppercase tracking-widest text-white hover:text-blue-500 transition-colors">projects</button>
-            <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
-              <button className="text-sm uppercase tracking-widest text-white hover:text-blue-500 transition-colors">resume</button>
-            </a>
-            <button className="text-sm uppercase tracking-widest text-white hover:text-blue-500 transition-colors">additionals.</button>
-          </div>
+    <main className="flex flex-col">
+      <NavBar />
+      <section className="h-screen flex flex-col pt-0">
+        <div className="h-1/10 flex items-end justify-center pb-4">
+          <div className="w-full max-w-3xl flex items-center justify-between">
+            <div className="flex items-center gap-8">
+              <a href="https://www.linkedin.com/in/amyjhuang/" target="_blank" rel="noopener noreferrer">
+                <button className="text-sm uppercase tracking-widest text-white hover:cursor-pointer transition-colors"><img src={linkedinIcon.src} alt="LinkedIn" className="w-5 h-5" /></button>
+              </a>
+              <a href="https://github.com/ahha220" target="_blank" rel="noopener noreferrer">
+                <button className="text-sm uppercase tracking-widest text-white hover:cursor-pointer transition-colors"><img src={githubIcon.src} alt="GitHub" className="w-5 h-5" /></button>
+              </a>
+              <a href="mailto:a287huan@uwaterloo.ca">
+                <button className="text-sm uppercase tracking-widest text-white hover:cursor-pointer transition-colors"><img src={mailIcon.src} alt="Mail" className="w-5 h-5" /></button>
+              </a>
+            </div>
 
-          <div className="flex items-center gap-3">
-            <span className={`text-sm uppercase tracking-widest transition-colors ${active ? 'text-white/60' : 'text-blue-500'}`}>3d me & you?</span>
-            <button
-              onClick={toggleCamera}
-              className={`relative w-10 h-5 rounded-full transition-colors ${
-                active ? 'bg-blue-500' : 'bg-white'
-              }`}
-            >
-              <div
-                className={`absolute top-0.5 left-0.5 w-4 h-4 bg-black rounded-full transition-transform ${
-                  active ? 'translate-x-5' : ''
+            <div className="flex items-center gap-3">
+              <span className={`text-sm uppercase tracking-widest transition-colors ${active ? 'text-white/60' : 'text-blue-500'}`}>3d me & you?</span>
+              <button
+                onClick={toggleCamera}
+                className={`relative w-10 h-5 rounded-full transition-colors ${
+                  active ? 'bg-blue-500' : 'bg-white'
                 }`}
-              />
-            </button>
+              >
+                <div
+                  className={`absolute top-0.5 left-0.5 w-4 h-4 bg-black rounded-full transition-transform ${
+                    active ? 'translate-x-5' : ''
+                  }`}
+                />
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-      <div className="flex-1 flex items-start justify-center">
-        <div 
-          className={!active ? "w-full max-w-2xl aspect-video bg-grey-200 flex jusitfy-center items-center rounded-xl" : "hidden"}>
-            <p className = "text-center">temporary</p>
+        <div className="flex items-start justify-center">
+          <div 
+            className={!active ? "w-full max-w-3xl aspect-video bg-white flex justify-center items-center" : "hidden"}>
+              <p className = "text-center text-black">temporary</p>
+              </div>
+          <video 
+            ref={videoRef} 
+            autoPlay playsInline style={{transform: 'scaleX(-1)'}} 
+            className={active ? 'w-full max-w-3xl aspect-video object-cover' : 'hidden'}>
+            </video>
+        </div>
+        <div className="flex flex-col items-center pt-8 pb-4">
+          <div className="w-full max-w-3xl flex justify-start">
+            <div className="w-full md:w-3/4 mt-2">
+              <h3 className="text-5xl md:text-6xl font-extrabold text-white leading-tight">AMY HUANG</h3>
+              <p className="text-blue-400 text-sm uppercase tracking-[0.35em] mt-3">Systems Design Engineering @Uwaterloo</p>
+              <p className="text-white text-sm mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
             </div>
-        <video 
-          ref={videoRef} 
-          autoPlay playsInline style={{transform: 'scaleX(-1)'}} 
-          className={active ? 'w-full max-w-3xl aspect-video object-cover' : 'hidden'}>
-          </video>
-      </div>
+          </div>
+        </div>
+      </section>
+      <section className="min-h-screen flex flex-col items-center py-20">
+        <div className="w-full max-w-3xl mx-auto">
+          <h2 className="text-white mb-8 text-left">PROJECTS</h2>
+          <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-8">
+            <ProjectCard />
+            <ProjectCard />
+            <ProjectCard />
+            <ProjectCard />
+          </div>
+        </div>
+      </section>
+      <footer>
+        <div className="w-full max-w-3xl mx-auto py-8 border-t bg-blue-500 border-none">
+          <p className="text-white text-center">Amy Huang</p>
+        </div>
+      </footer>
     </main>
   );
 }
