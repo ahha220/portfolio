@@ -79,10 +79,12 @@ export default function Home() {
             </video>
         </div>
         <div className="flex flex-col items-center pt-8 pb-4">
-          <div className="w-full max-w-3xl">
-            <h3 className="text-3xl font-bold text-white">AMY HUANG</h3>
-            <p className="text-blue-500 text-xs uppercase tracking-widest">Systems Design Engineering @Uwaterloo</p>
-            <p className="text-white text-xs">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <div className="w-full max-w-3xl flex justify-start">
+            <div className="w-full md:w-3/4 mt-2">
+              <h3 className="text-5xl md:text-6xl font-extrabold text-white leading-tight">AMY HUANG</h3>
+              <p className="text-blue-400 text-sm uppercase tracking-[0.35em] mt-3">Systems Design Engineering @Uwaterloo</p>
+              <p className="text-white text-sm mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
           </div>
         </div>
       </section>
